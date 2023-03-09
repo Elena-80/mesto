@@ -1,0 +1,94 @@
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Место</title>
+</head>
+
+<body class="root">
+  <header class="header">
+    <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+  </header>
+
+  <main>
+
+   <section class="profile">
+      <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
+      <div class = "profile__info">
+        <div class = "profile__block"> 
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button"><img class = "profile__button-image" src="./images/edit.svg"></button>
+        </div>
+        <p class="profile__profession">Исследователь океана</p>
+      </div>
+      <button class="profile__add-button"></button>
+    </section> 
+
+    <section class="photo-grid">
+        <ul class="photo-grid__container">
+          <li class  = "photo-grid__grid-element">
+              <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="photo-grid__image">
+              <div class = "photo-grid__title">
+                <p class = "photo-grid__text">Карачаево-Черкессия</p>
+                <button class="photo-grid__icon"></button>
+              </div>
+          </li>
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="photo-grid__image">
+            <div class = "photo-grid__title">
+              <p class = "photo-grid__text">Гора Эльбрус</p>
+              <button class="photo-grid__icon"></button>
+            </div>
+          </li>
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="photo-grid__image">
+            <div class = "photo-grid__title">
+              <p class = "photo-grid__text">Домбай</p>
+              <button class="photo-grid__icon"></button>
+            </div>
+          </li>
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="photo-grid__image">
+            <div class = "photo-grid__title">
+              <p class = "photo-grid__text">Гора Эльбрус</p>
+              <button class="photo-grid__icon"></button>
+            </div>
+          </li>
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="photo-grid__image">
+            <div class = "photo-grid__title">
+              <p class = "photo-grid__text">Домбай</p>
+              <button class="photo-grid__icon"></button>
+            </div>
+          </li>
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="photo-grid__image">
+            <div class = "photo-grid__title">
+              <p class = "photo-grid__text">Карачаевск</p>
+              <button class="photo-grid__icon"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+      
+  </main> 
+
+    <footer class="footer">
+        <p class="footer__copyright">© 2023 Mesto Russia</p>
+    </footer>
+
+    <div class="popup">
+      <div class = "popup__container">
+        <img src="./images/close-icon.png" class="popup__close-button">
+        <form class = "popup__form">
+         
+            <h2 class = "popup__title">Редактировать профиль</h2>
+            <input type="text" class="popup__name" id="name" name="name"  required>
+            <input type="text" class = "popup__profession" id = "profession" name = "profession"  required>
+            <button class = "popup__submit-button" type="submit">Сохранить</button>
+         
+        </form>    
+      </div>  
+    </div>
+  
+  <script src="./scripts/script.js"></script>
+</body>
+    
+</html>

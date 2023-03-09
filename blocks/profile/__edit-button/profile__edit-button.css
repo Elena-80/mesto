@@ -1,0 +1,22 @@
+.profile__edit-button {
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+    background: transparent;
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    margin-left: 25px;
+}
+
+.profile__edit-button:hover {
+    opacity: 50%;
+    cursor: url("./image/hand-white.png"), pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__edit-button {
+        width: 18px;
+        height: 18px;
+        margin-left: 10px;
+    }
+  }
