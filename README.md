@@ -3,7 +3,7 @@
 ## Описание: 
 
 "Mesto" - страница, где пользователи могут делиться фотографиями. В работе применены расширенные возможности HTML и CSS, JavaScript, работа с DOM, git.  
-[Проектная работа на GitHub Pages](https://elena-80.github.io/mesto/) 
+[Проектная работа на GitHub Pages](https://elena-80.github.io/mesto/)
 
 ## Функционал: 
 
