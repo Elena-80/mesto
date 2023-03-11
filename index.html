@@ -10,7 +10,7 @@
 
 <body class="root">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    <img class="header__logo" src="./images/logo.svg" alt="Логотип проекта публикации пользовательских фотографий">
   </header>
 
   <main>
@@ -20,50 +20,50 @@
       <div class = "profile__info">
         <div class = "profile__block"> 
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"><img class = "profile__button-image" src="./images/edit.svg"></button>
+          <button type="button" aria-label="Редактирование профиля пользователя" class="profile__edit-button"></button>
         </div>
         <h2 class="profile__profession">Исследователь океана</h2>
       </div>
-      <button class="profile__add-button"></button>
+      <button type="button" aria-label="Добавление нового профиля пользователя" class="profile__add-button"></button>
     </section> 
 
     <section class="photo-grid">
         <ul class="photo-grid__container">
           <li class  = "photo-grid__grid-element">
-              <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="photo-grid__image">
+              <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Кирпичный монастырь в горах Карачаевска" class="photo-grid__image">
               <div class = "photo-grid__title">
-                <h3 class = "photo-grid__text">Карачаево-Черкессия</h3>
-                <button class="photo-grid__icon"></button>
+                <h2 class = "photo-grid__text">Карачаево-Черкессия</h2>
+                <button type="button" class="photo-grid__button"></button>
               </div>
           </li>
-          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="photo-grid__image">
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус на фоне утреннего неба" class="photo-grid__image">
             <div class = "photo-grid__title">
-              <h3 class = "photo-grid__text">Гора Эльбрус</h3>
-              <button class="photo-grid__icon"></button>
+              <h2 class = "photo-grid__text">Гора Эльбрус</h2>
+              <button type="button" class="photo-grid__button"></button>
             </div>
           </li>
-          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="photo-grid__image">
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Пасмурный день на Домбае" class="photo-grid__image">
             <div class = "photo-grid__title">
-              <h3 class = "photo-grid__text">Домбай</h3>
-              <button class="photo-grid__icon"></button>
+              <h2 class = "photo-grid__text">Домбай</h2>
+              <button type="button" class="photo-grid__button"></button>
             </div>
           </li>
-          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="photo-grid__image">
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус на фоне утреннего неба" class="photo-grid__image">
             <div class = "photo-grid__title">
-              <h3 class = "photo-grid__text">Гора Эльбрус</h3>
-              <button class="photo-grid__icon"></button>
+              <h2 class = "photo-grid__text">Гора Эльбрус</h2>
+              <button type="button" class="photo-grid__button"></button>
             </div>
           </li>
-          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="photo-grid__image">
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Пасмурный день на Домбае" class="photo-grid__image">
             <div class = "photo-grid__title">
-              <h3 class = "photo-grid__text">Домбай</h3>
-              <button class="photo-grid__icon"></button>
+              <h2 class = "photo-grid__text">Домбай</h2>
+              <button type="button" class="photo-grid__button"></button>
             </div>
           </li>
-          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="photo-grid__image">
+          <li class  = "photo-grid__grid-element"><img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Кирпичный монастырь в горах Карачаевска" class="photo-grid__image">
             <div class = "photo-grid__title">
-              <h3 class = "photo-grid__text">Карачаевск</h3>
-              <button class="photo-grid__icon"></button>
+              <h2 class = "photo-grid__text">Карачаевск</h2>
+              <button type="button" class="photo-grid__button"></button>
             </div>
           </li>
         </ul>
@@ -72,24 +72,24 @@
   </main> 
 
     <footer class="footer">
-        <p class="footer__copyright">© 2023 Mesto Russia</p>
+        <p lang="en" class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
 
     <div class="popup">
       <div class = "popup__container">
-        <img src="./images/close-icon.png" class="popup__close-button">
-        <form class = "popup__form">
-         
-            <h2 class = "popup__title">Редактировать профиль</h2>
-            <input type="text" class="popup__name" id="name" name="name"  required>
-            <input type="text" class = "popup__profession" id = "profession" name = "profession"  required>
-            <button class = "popup__submit-button" type="submit">Сохранить</button>
-         
+        <button  type="button" aria-label="Закрытие окна редактирования профиля" class="popup__close-button"></button>
+        <h2 class = "popup__title">Редактировать профиль</h2>
+        <form class = "popup__form" name = "editForm">
+          <fieldset class = "popup__fieldset">
+            <input type="text" class="popup__text popup__name" id="name" name="name"  placeholder = "Имя" required>
+            <input type="text" class = "popup__text popup__profession" id = "profession" name = "profession" placeholder = "Профессия" required>
+            <button type="submit" class = "popup__submit-button">Сохранить</button>
+          </fieldset>
         </form>    
       </div>  
     </div>
   
-  <script src="./scripts/script.js"></script>
+  <script src="./scripts/script.js" defer></script>
 </body>
     
 </html>

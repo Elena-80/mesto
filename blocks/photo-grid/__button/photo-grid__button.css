@@ -1,7 +1,7 @@
-.photo-grid__icon {
+.photo-grid__button {
     background: transparent url(../../../images/heart.svg);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     border: none;
     cursor: pointer;
     flex-shrink: 0;
@@ -12,7 +12,7 @@
     align-self: center;
 }
 
-.photo-grid__icon:hover {
-    opacity: 50%;
+.photo-grid__button:hover {
+    opacity: 0.5;
     cursor: url("./image/hand.png"), pointer;
 }
