@@ -8,16 +8,15 @@
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
   }
-  
+
   @media screen and (min-width: 768px) and (max-width: 1024px) {
     .photo-grid__container {
      grid-template-columns: repeat(2, 1fr);
-     margin: 0 auto;
     }
   }
 
  @media screen and (max-width: 767px) {
-    .photo-grid__container  {     
+    .photo-grid__container  {
       grid-template-columns: repeat(1, 1fr);
     }
   }

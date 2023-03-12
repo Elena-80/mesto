@@ -9,10 +9,12 @@
     border-bottom: 1px solid rgb(0,0,0, 0.2);
     font-weight: 400;
     font-size: 14px;
-    color: #000000;    
+    line-height: 17px;
+    line-height: 100%;
+    color: #000000;
   }
-  
- 
+
+
   @media screen and (max-width: 767px) {
     .popup__text {
       max-width: 238px;
