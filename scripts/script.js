@@ -5,8 +5,8 @@ let closeIcon = popupElement.querySelector('.popup__close-button');
 let formElement = popupElement.querySelector('.popup__form');
 let profileName = container.querySelector('.profile__name');
 let profileJob = container.querySelector('.profile__profession');
-let nameInput =  formElement.querySelector('.popup__text_name');
-let jobInput = formElement.querySelector('.popup__text_profession');
+let nameInput =  formElement.querySelector('.popup__text_type_name');
+let jobInput = formElement.querySelector('.popup__text_type_profession');
 
 function editProfile() {
 
