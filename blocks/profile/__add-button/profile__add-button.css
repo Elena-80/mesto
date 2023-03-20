@@ -11,7 +11,7 @@
 
 
 .profile__add-button:hover {
-    opacity: 50%;
+    opacity: 0.5;
     cursor: url("./image/hand.svg"), pointer;
 }
 
