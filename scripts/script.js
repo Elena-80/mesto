@@ -18,8 +18,8 @@ let formPhotoElement = popupPhotoElement.querySelector('.popup-photo__form');
 let titleInput = formPhotoElement.querySelector('.popup__text_type_title');
 let linkInput = formPhotoElement.querySelector('.popup__text_type_link');
 
-let zoomWindow = container.querySelector('.zoom');
-let closeZoomElement = zoomWindow.querySelector('.zoom__close');
+let zoomWindow = container.querySelector('.popup-zoom');
+let closeZoomElement = zoomWindow.querySelector('.popup-zoom__close-button');
 
 
 const initialCards = [
@@ -62,7 +62,7 @@ function editProfile() {
 function closePopup() {
     popupPhotoElement.classList.remove('popup_opened');
     popupEditElement.classList.remove('popup_opened');
-    zoomWindow.classList.remove('zoom_opened');
+    zoomWindow.classList.remove('popup-zoom_opened');
   }
 
 function handleFormSubmit (evt) {
@@ -117,9 +117,9 @@ function addNewPicture(item) {
 
 function openZoomWindow (evt) {
   const eventTarget = evt.target;
-  zoomWindow.querySelector('.zoom__image').src = eventTarget.src;
-  zoomWindow.querySelector('.zoom__title').textContent = eventTarget.parentElement.querySelector('.photo-grid__text').textContent;
-  zoomWindow.classList.add('zoom_opened');
+  zoomWindow.querySelector('.popup-zoom__image').src = eventTarget.src;
+  zoomWindow.querySelector('.popup-zoom__title').textContent = eventTarget.parentElement.querySelector('.photo-grid__text').textContent;
+  zoomWindow.classList.add('popup-zoom_opened');
 }
 
 initialCards.forEach(addNewPicture);
