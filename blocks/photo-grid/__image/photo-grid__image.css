@@ -5,3 +5,8 @@
     height: 282px;
     object-fit: cover;
   }
+
+  .photo-grid__image:hover {
+    /*opacity: 0.5;*/
+    cursor: url("./image/hand.svg"), pointer;
+}
