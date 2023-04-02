@@ -11,12 +11,12 @@ const popupPhotoButton = popupPhotoElement.querySelector('.popup-photo__close-bu
 const popupEditButton = popupEditElement.querySelector('.popup-edit__close-button');
 
 const formEditElement = popupEditElement.querySelector('.popup-edit__form');
-const nameInput =  formEditElement.querySelector('.popup__text_type_name');
-const jobInput = formEditElement.querySelector('.popup__text_type_profession');
+const nameInput =  formEditElement.querySelector('.popup__input_type_name');
+const jobInput = formEditElement.querySelector('.popup__input_type_profession');
 
 const formPhotoElement = popupPhotoElement.querySelector('.popup-photo__form');
-const titleInput = formPhotoElement.querySelector('.popup__text_type_title');
-const linkInput = formPhotoElement.querySelector('.popup__text_type_link');
+const titleInput = formPhotoElement.querySelector('.popup__input_type_title');
+const linkInput = formPhotoElement.querySelector('.popup__input_type_link');
 
 const popupZoomWindow = container.querySelector('.popup-zoom');
 const popupZoomButton = popupZoomWindow.querySelector('.popup-zoom__close-button');
