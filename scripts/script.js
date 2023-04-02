@@ -23,8 +23,19 @@ const popupZoomButton = popupZoomWindow.querySelector('.popup-zoom__close-button
 
 const pictureTemplate = container.querySelector('#photo').content;
 
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+      closePopup(popup);
+     };
+  });
+  popup.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popup);
+    }
+  });
 }
 
 function editProfile() {
@@ -34,12 +45,13 @@ function editProfile() {
   }
 
 function closePopup(popup) {
+    formPhotoElement.reset();
+    formEditElement.reset();
     popup.classList.remove('popup_opened');
   }
 
 function handleEditFormSubmit (evt) {
     evt.preventDefault();
-
     profileJob.textContent = jobInput.value;
     profileName.textContent = nameInput.value;
     closePopup(popupEditElement);
@@ -47,9 +59,7 @@ function handleEditFormSubmit (evt) {
 
 function handlePictureFormSubmit (evt) {
   evt.preventDefault();
-
   renderCard({name: titleInput.value, link: linkInput.value});
-  formPhotoElement.reset();
   closePopup(popupPhotoElement);
 }
 
@@ -98,33 +108,3 @@ formEditElement.addEventListener('submit', handleEditFormSubmit);
 formPhotoElement.addEventListener('submit', handlePictureFormSubmit);
 
 
-
-
-/* OLD
-
-function handlePictureFormSubmit (evt) {
-  evt.preventDefault();
-
-  initialCards.unshift({name: titleInput.value, link: linkInput.value});
-  photoContainer.innerHTML = "";
-
-  initialCards.forEach(addNewPicture);
-  formPhotoElement.reset();
-
-  closePopup(popupPhotoElement);
-}
-
-function likePicture(evt) {
-  const eventTarget = evt.target;
-  eventTarget.classList.toggle('photo-grid__button_active');
-}
-
-function deletePicture(evt) {
-  const eventTarget = evt.target;
-  delElementIndex = [...photoContainer.children].indexOf(eventTarget.parentElement);
-
-  photoContainer.innerHTML = "";
-  initialCards.splice(delElementIndex, 1);
-  initialCards.forEach(addNewPicture);
-}
-*/
