@@ -1,4 +1,4 @@
-.popup-zoom__picture {
+.popup__picture {
    display: flex;
    position: relative;
    flex-direction: column;

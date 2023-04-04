@@ -28,16 +28,25 @@ const hasInvalidInput = (inputList) => {
   });
 }
 
+const disableButton = (buttonElement) => {
+  buttonElement.classList.add(enableValidation.inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(enableValidation.inactiveButtonClass);
-    buttonElement.disabled = true;
+    disableButton(buttonElement);
   } else {
     buttonElement.classList.remove(enableValidation.inactiveButtonClass);
     buttonElement.disabled = false;
   }
 }
 
+const clearErrors = (formElement, inputList) => {
+  inputList.forEach((inputElement) => {
+    hideError(formElement, inputElement);
+  });
+}
 
 const isValid = () => {
   const formList = Array.from(document.querySelectorAll(enableValidation.formSelector));
