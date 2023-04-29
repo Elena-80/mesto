@@ -1,5 +1,4 @@
 
-
 const showError = (formElement, inputElement, message) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = message;
@@ -28,7 +27,7 @@ const hasInvalidInput = (inputList) => {
   });
 }
 
-const disableButton = (buttonElement) => {
+export const disableButton = (buttonElement) => {
   buttonElement.classList.add(enableValidation.inactiveButtonClass);
   buttonElement.disabled = true;
 }
@@ -42,7 +41,7 @@ const toggleButtonState = (inputList, buttonElement) => {
   }
 }
 
-const clearErrors = (formElement, inputList) => {
+export const clearErrors = (formElement, inputList) => {
   inputList.forEach((inputElement) => {
     hideError(formElement, inputElement);
   });

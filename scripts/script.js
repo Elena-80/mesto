@@ -22,7 +22,6 @@ const linkInput = formPhotoElement.querySelector('.popup__input_type_link');
 const popupZoomWindow = container.querySelector('.popup-zoom');
 const popupZoomButton = popupZoomWindow.querySelector('.popup-zoom__close-button');
 
-const pictureTemplate = container.querySelector('#photo').content;
 
 
 function openPopup(popup) {
@@ -57,7 +56,7 @@ function closePopup(popup) {
 
 function clearPopupForm(popup) {
   if (popup.querySelector(`.${popup.id}__form`) != null) {
-    formElement = popup.querySelector(`.${popup.id}__form`)
+    formElement = popup.querySelector(`.${popup.id}__form`);
     formElement.reset();
     clearErrors(formElement, Array.from(formElement.querySelectorAll('.popup__input')));
     disableButton(popup.querySelector(`.${popup.id}__submit-button`));
@@ -107,13 +106,6 @@ function makeCardObject(item) {
   return pictureElement;
 };
 
-function openZoomWindow (item) {
-  popupZoomWindow.querySelector('.popup-zoom__image').src = item.link;
-  popupZoomWindow.querySelector('.popup-zoom__title').textContent = item.name;
-  openPopup(popupZoomWindow);
-}
-
-initialCards.forEach(renderCard);
 
 profileAddButton.addEventListener('click', () => openPopup(popupPhotoElement));
 profileEditButton.addEventListener('click', editProfile);
