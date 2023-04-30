@@ -1,3 +1,30 @@
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 const container = document.querySelector('.root');
 const profileEditButton = container.querySelector('.profile__edit-button');
 const profileAddButton = container.querySelector('.profile__add-button');
@@ -18,6 +45,10 @@ const formPhotoElement = popupPhotoElement.querySelector('.popup-photo__form');
 const titleInput = formPhotoElement.querySelector('.popup__input_type_title');
 const linkInput = formPhotoElement.querySelector('.popup__input_type_link');
 
+export const popupZoomWindow = document.querySelector('.popup-zoom');
+const popupZoomButton = popupZoomWindow.querySelector('.popup-zoom__close-button');
+
+
 
 const presets = {
   formSelector: '.popup__form',
@@ -29,7 +60,7 @@ const presets = {
 };
 
 
-import Card from './card.js';
+import Card from './Card.js';
 import FormValidation from './FormValidator.js';
 
 export function openPopup(popup) {
@@ -52,22 +83,16 @@ const addMouseListener = (evt) => {
 
 function editProfile() {
     openPopup(popupEditElement);
-    const validation = new FormValidation(presets, formEditElement);
-    validation.enableValidation();
     jobInput.value = profileJob.textContent;
     nameInput.value = profileName.textContent;
   }
 
-function addPicture() {
-    openPopup(popupPhotoElement);
-    const validation = new FormValidation(presets, formPhotoElement);
-    validation.enableValidation();
-  }
-
-export function closePopup(popup) {
+function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    editFormObject.clearForm();
+    photoFormObject.clearForm();
     document.removeEventListener('keydown', addKeyListener);
-    document.removeEventListener('click', addMouseListener);
+    document.removeEventListener('mousedown', addMouseListener);
   }
 
 
@@ -78,16 +103,25 @@ function handleEditFormSubmit (evt) {
     closePopup(popupEditElement);
 }
 
+function generateValidationElement(form) {
+  const validation = new FormValidation(presets, form);
+  validation.enableValidation();
+  return validation;
+}
+
+function generateCardElement (data, templateSelector) {
+  const card = new Card(data, templateSelector);
+  return card.generateCard();
+}
+
 function handlePictureFormSubmit (evt) {
   evt.preventDefault();
-  const card = new Card({name: titleInput.value, link: linkInput.value}, '.photo');
-  const cardElement = card.generateCard();
-  document.querySelector('.photo-grid__container').prepend(cardElement);
+  document.querySelector('.photo-grid__container').prepend(generateCardElement({name: titleInput.value, link: linkInput.value}, '.photo'));
   closePopup(popupPhotoElement);
 }
 
 
-profileAddButton.addEventListener('click', addPicture);
+profileAddButton.addEventListener('click', () => openPopup(popupPhotoElement));
 profileEditButton.addEventListener('click', editProfile);
 
 popupPhotoButton.addEventListener('click', () => closePopup(popupPhotoElement));
@@ -95,5 +129,15 @@ popupEditButton.addEventListener('click', () => closePopup(popupEditElement));
 
 formEditElement.addEventListener('submit', handleEditFormSubmit);
 formPhotoElement.addEventListener('submit', handlePictureFormSubmit);
+
+popupZoomButton.addEventListener('click', () => closePopup(popupZoomWindow));
+
+const photoFormObject = generateValidationElement(formPhotoElement);
+const editFormObject = generateValidationElement(formEditElement);
+
+
+initialCards.forEach((item) => {
+  document.querySelector('.photo-grid__container').prepend(generateCardElement(item, '.photo'));
+});
 
 
