@@ -11,5 +11,5 @@
 
 .photo-grid__trash:hover {
   opacity: 0.5;
-  cursor: url("./image/hand.svg"), pointer;
+  cursor: pointer;
 }

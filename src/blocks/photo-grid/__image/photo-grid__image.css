@@ -8,5 +8,6 @@
 
   .photo-grid__image:hover {
     /*opacity: 0.5;*/
-    cursor: url("./image/hand.svg"), pointer;
+    cursor: pointer;
+
 }

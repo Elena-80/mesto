@@ -1,10 +1,9 @@
-import {openPopup, popupZoomWindow} from './index.js';
-
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, {handleCardClick}) {
     this._templateSelector = templateSelector;
     this._link = data.link;
     this._name = data.name;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -31,10 +30,8 @@ export default class Card {
       this._element.remove() });
 
       this._image.addEventListener('click', () => {
-      popupZoomWindow.querySelector('.popup-zoom__image').src = this._link;
-      popupZoomWindow.querySelector('.popup-zoom__image').alt = this._name;
-      popupZoomWindow.querySelector('.popup-zoom__title').textContent = this._name;
-      openPopup(popupZoomWindow) });
+        this._handleCardClick({src: this._link, title: this._name});
+       });
 
   };
 }

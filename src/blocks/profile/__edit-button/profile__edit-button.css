@@ -10,7 +10,7 @@
 
 .profile__edit-button:hover {
     opacity: 0.6;
-    cursor: url("./image/hand.svg"), pointer;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
