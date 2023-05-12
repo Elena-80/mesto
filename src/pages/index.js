@@ -51,16 +51,22 @@ const profileName = popupEdit.querySelector('#name');
 const profileProfession = popupEdit.querySelector('#profession');
 const formsList = Array.from(document.forms);
 
+const popupMain = new Popup('.popup');
+popupMain.setEventListeners();
 
 const popupZoomImage = new PopupWithImage('.popup-zoom');
 const currentUserInfo = new UserInfo('.profile__name', '.profile__profession');
 
-
-const defaultCardList = new Section({ items: initialCards, renderer: (item) => {
-  const card = new Card(item, '.photo', {handleCardClick: ({src, title}) => {
-    popupZoomImage.open({title: title, src: src});
+function createCard(item) {
+  const card = new Card(item, '.photo', {handleCardClick: (item) => {
+    popupZoomImage.open(item);
   }
   });
+  return card;
+}
+
+const defaultCardList = new Section({ items: initialCards, renderer: (item) => {
+  const card = createCard(item);
   const cardElement = card.generateCard();
   defaultCardList.addItem(cardElement);
    },
@@ -68,28 +74,20 @@ const defaultCardList = new Section({ items: initialCards, renderer: (item) => {
 
 
 const popupEditForm = new PopupWithForm('.popup-edit', {handleFormSubmit: () => {
-  currentUserInfo.setUserInfo({name: popupEditForm._formValues.name, profession: popupEditForm._formValues.profession});
+  const inputValues = popupEditForm._getInputValues();
+  currentUserInfo.setUserInfo(inputValues);
   }
    });
 popupEditForm.setEventListeners();
 
 const popupPhotoForm = new PopupWithForm('.popup-photo', {handleFormSubmit: () => {
-  const card = new Card({name: popupPhotoForm._formValues.title, link: popupPhotoForm._formValues.link}, '.photo', {handleCardClick: ({src, title}) => {
-    popupZoomImage.open({title: title, src: src});
-  }
-  });
-
+  const inputPhotoValues = popupPhotoForm._getInputValues();
+  const card = createCard({link: inputPhotoValues.link, name: inputPhotoValues.title});
   const cardElement = card.generateCard();
   defaultCardList.addItem(cardElement);
   }
    });
 popupPhotoForm.setEventListeners();
-
-
-
-const popupAddPhoto = new Popup('.popup-photo');
-const popupEditProfile = new Popup('.popup-edit');
-const popupZoomPhoto = new Popup('.popup-zoom');
 
 
 const formValidation = (formElement) => {
@@ -104,7 +102,7 @@ formsList.forEach(form => {
 });
 
 imageAddButton.addEventListener('click', () => {
-  popupAddPhoto.open()
+  popupPhotoForm.open()
   formValidatorsList.photoForm.clearForm();
 }
   );
@@ -114,7 +112,7 @@ profileEditButton.addEventListener('click', () => {
   const userData = currentUserInfo.getUserInfo();
   profileName.value = userData.name;
   profileProfession.value = userData.profession;
-  popupEditProfile.open()
+  popupEditForm.open()
 }
   );
 
