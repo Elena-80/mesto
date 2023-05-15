@@ -50,17 +50,19 @@ const profileName = popupEdit.querySelector('#name');
 const profileProfession = popupEdit.querySelector('#profession');
 const formsList = Array.from(document.forms);
 
-const popupZoomImage = new PopupWithImage('.popup-zoom');
 const currentUserInfo = new UserInfo('.profile__name', '.profile__profession');
+const popupZoomImage = new PopupWithImage('.popup-zoom');
+popupZoomImage.setEventListeners();
+
 
 function createCard(item) {
   const card = new Card(item, '.photo', {handleCardClick: (item) => {
     popupZoomImage.open(item);
-    popupZoomImage.setEventListeners();
   }
   });
   return card;
 }
+
 
 const defaultCardList = new Section({ items: initialCards, renderer: (item) => {
   const card = createCard(item);
@@ -75,6 +77,7 @@ const popupEditForm = new PopupWithForm('.popup-edit', {handleFormSubmit: (input
   }
    });
 popupEditForm.setEventListeners();
+
 
 const popupPhotoForm = new PopupWithForm('.popup-photo', {handleFormSubmit: (inputPhotoValues) => {
   const card = createCard(inputPhotoValues);
@@ -91,16 +94,19 @@ const formValidation = (formElement) => {
   return validator;
 }
 
+
 const formValidatorsList = {};
 formsList.forEach(form => {
   formValidatorsList[form.id] = formValidation(form);
 });
+
 
 imageAddButton.addEventListener('click', () => {
   popupPhotoForm.open()
   formValidatorsList.photoForm.clearForm();
 }
   );
+
 
 profileEditButton.addEventListener('click', () => {
   formValidatorsList.editForm.clearForm();
