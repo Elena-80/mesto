@@ -16,13 +16,16 @@
   <main>
 
    <section class="profile">
-      <img class="profile__avatar">
+      <div class = "profile__avatar-container">
+        <img class="profile__avatar">
+        <button class="profile__avatar-edit"></button>
+      </div>
       <div class = "profile__info">
         <div class = "profile__block">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"></h1>
           <button type="button" aria-label="Редактирование профиля пользователя" class="profile__edit-button"></button>
         </div>
-        <h2 class="profile__profession">Исследователь океана</h2>
+        <h2 class="profile__profession"></h2>
       </div>
       <button type="button" aria-label="Добавление новых фотографий" class="profile__add-button"></button>
     </section>
@@ -47,7 +50,7 @@
           <fieldset class = "popup__fieldset">
             <input type="text" class="popup__input popup__input_type_name" id="name" name="name"  placeholder = "Имя" required minlength="2" maxlength="40">
             <span class="popup__input-error name-error"></span>
-            <input type="text" class = "popup__input popup__input_type_profession" id = "profession" name = "profession" placeholder = "Профессия" required minlength="2" maxlength="200">
+            <input type="text" class = "popup__input popup__input_type_profession" id = "profession" name = "about" placeholder = "Профессия" required minlength="2" maxlength="200">
             <span class="popup__input-error profession-error"></span>
             <button type="submit" class = "popup__submit-button popup-edit__submit-button">Сохранить</button>
           </fieldset>
@@ -79,15 +82,43 @@
       </div>
     </div>
 
+    <div class="popup popup-delete" id = "popup-delete">
+      <div class = "popup__container">
+        <button  type="button" aria-label="Закрытие окна предупреждение" class="popup__close-button popup-delete__close-button"></button>
+        <h2 class = "popup__title">Вы уверены?</h2>
+        <form class = "popup__form popup-delete__form" id = "deleteForm" novalidate>
+          <button class = "popup__submit-button popup-delete__submit-button">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup-avatar" id = "popup-avatar">
+      <div class = "popup__container">
+        <button  type="button" aria-label="Закрытие окна предупреждение" class="popup__close-button popup-avatar__close-button"></button>
+        <h2 class = "popup__title">Обновить аватар</h2>
+        <form class = "popup__form popup-avatar__form" id = "avatarForm" novalidate>
+          <fieldset class = "popup__fieldset"></fieldset>
+            <input type="url" class = "popup__input popup__input_type_avatar" id = "avatar" name = "avatar" placeholder = "Ссылка на картинку профиля" required>
+            <span class="popup__input-error avatar-error"></span>
+            <button class = "popup__submit-button popup-avatar__submit-button">Сохранить</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
     <template class="photo">
       <li class  = "photo-grid__grid-element"><img class="photo-grid__image">
         <button type = "button" class = "photo-grid__trash"></button>
         <div class = "photo-grid__title">
           <h2 class = "photo-grid__text"></h2>
-          <button type="button" class="photo-grid__button"></button>
+          <div class = "photo-grid__like">
+            <button type="button" class="photo-grid__button"></button>
+            <div class ="photo-grid__count">0</div>
+          <div>
         </div>
       </li>
     </template>
+
 
     <!-- <script type="module" src="./pages/index.js" defer></script> -->
 

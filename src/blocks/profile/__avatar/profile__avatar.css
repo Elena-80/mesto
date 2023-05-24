@@ -3,5 +3,7 @@
     border-radius: 50%;
     width: 120px;
     object-fit: cover;
-    background-image: url("../../../images/image.jpg");
+    background-position: center;
 }
+
+

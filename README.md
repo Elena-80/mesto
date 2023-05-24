@@ -21,12 +21,14 @@
 * File Structure and File Paths (Nested BEM)
 * Git
 * JavaScript
+* Асинхронный код: промисы и HTTP-запросы
+* Минификация и транспиляция JS Babel
 
 
 ## Будущая доработка проекта будет включать в себя:
 
-* Обработка событий
-* Валидация форм
+* React.js
+* Backend
 
 
 ## Инструкция по установке:
@@ -37,4 +39,6 @@ git clone https://github.com/Elena-80/mesto.git
 ## Языки:
 
 * JavaScript
+
+
 
