@@ -27,7 +27,7 @@ const profileProfession = popupEdit.querySelector('.popup__input_type_profession
 const formsList = Array.from(document.forms);
 
 let currentCard = null;
-let userId = [];
+let userId = "";
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66/',
@@ -37,28 +37,20 @@ const api = new Api({
   }
 });
 
-api.getUserInfo()
-  .then((info) => {
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([info, items]) => {
     currentUserInfo.setUserInfo(info);
     currentUserInfo.setAvatar(info);
     userId = info._id;
-    })
-  .catch((err) => {
-    console.log(err);
-  });
-
-api.getInitialCards()
-  .then((items) => {
     defaultCardList.renderElements(items);
-    })
+  })
   .catch((err) => {
-    console.log(err);
+    console.log(`Ошибка: ${err}`);
   });
-
 
 const defaultCardList = new Section({renderer: (item) => {
-  const card = createCard(item);
-  const cardElement = card.generateCard();
+  const cardElement = createCard(item);
   defaultCardList.addItem(cardElement);
    },
         }, '.photo-grid__container');
@@ -67,6 +59,7 @@ const defaultCardList = new Section({renderer: (item) => {
 const currentUserInfo = new UserInfo('.profile__name', '.profile__profession', '.profile__avatar');
 const popupZoomImage = new PopupWithImage('.popup-zoom');
 popupZoomImage.setEventListeners();
+
 
 const popupDeleteConfirm  = new PopupWithConfirm('.popup-delete', {
   submit: (data) => {
@@ -101,7 +94,10 @@ function createCard(item) {
   {handleLikes: (item) =>{
     api.sendLikes(item)
     .then((numberOfLikes) => {
-      item.querySelector('.photo-grid__count').textContent = numberOfLikes.likes.length;
+      card.changeLikes(numberOfLikes);
+    })
+    .catch((err) => {
+      console.log(err);
     })
   }
   },
@@ -109,28 +105,32 @@ function createCard(item) {
   {subtructLikes: (item) =>{
     api.deleteLikes(item)
     .then((numberOfLikes) => {
-      item.querySelector('.photo-grid__count').textContent = numberOfLikes.likes.length;
+      card.changeLikes(numberOfLikes);
+    })
+    .catch((err) => {
+      console.log(err);
     })
   }
   }
 
 );
-
-  return card;
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 
 
 const popupEditForm = new PopupWithForm('.popup-edit', {handleFormSubmit: (inputValues) => {
-  popupEditForm.dataLoading(true);
+  popupEditForm.renderLoading(true);
   api.sendUserInfo(inputValues)
     .then((inputValues) => {
       currentUserInfo.setUserInfo(inputValues);
+      popupEditForm.close();
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
     })
     .finally(() => {
-      popupEditForm.dataLoading(false);
+      popupEditForm.renderLoading(false);
     });
   }
    });
@@ -138,40 +138,41 @@ popupEditForm.setEventListeners();
 
 
 const popupPhotoForm = new PopupWithForm('.popup-photo', {handleFormSubmit: (inputPhotoValues) => {
-  popupPhotoForm.dataLoading(true);
+  popupPhotoForm.renderLoading(true);
   api.sendPictureInfo(inputPhotoValues)
   .then((post) => {
-    const card = createCard(post);
-    const cardElement = card.generateCard();
+    const cardElement = createCard(post);
     defaultCardList.addItem(cardElement);
+    popupPhotoForm.close();
 })
   .catch((err) => {
     console.log(err);
 })
   .finally(() => {
-    popupPhotoForm.dataLoading(false);
+    popupPhotoForm.renderLoading(false);
   });
   }
    });
 popupPhotoForm.setEventListeners();
 
 const popupAvatarForm = new PopupWithForm('.popup-avatar', {handleFormSubmit: (inputValues) => {
-  popupAvatarForm.dataLoading(true);
+  popupAvatarForm.renderLoading(true);
   api.sendNewAvatar(inputValues)
     .then(() => {
       currentUserInfo.setAvatar(inputValues);
+      popupAvatarForm.close();
     })
     .catch((err) => {
       console.log(err);
   })
     .finally(() => {
-      popupAvatarForm.dataLoading(false);
+      popupAvatarForm.renderLoading(false);
     });
   }
    });
 popupAvatarForm.setEventListeners();
 
-const formValidation = (formElement) => {
+const validation = (formElement) => {
   const validator = new FormValidator(presets, formElement);
   validator.enableValidation();
   return validator;
@@ -180,7 +181,7 @@ const formValidation = (formElement) => {
 
 const formValidatorsList = {};
 formsList.forEach(form => {
-  formValidatorsList[form.id] = formValidation(form);
+  formValidatorsList[form.id] = validation(form);
 });
 
 

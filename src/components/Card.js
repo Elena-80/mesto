@@ -49,12 +49,8 @@ export default class Card {
       this._subtructLikes(this._element);
     } else {
       this._handleLikes(this._element)}
-    this._likeButton.classList.toggle('photo-grid__button_active');
   }
     );
-
-    /*this._element.querySelector('.photo-grid__trash').addEventListener('click', () => this._handleCardDelete(this._element));*/
-
       this._image.addEventListener('click', () => {
         this._handleCardClick({src: this._link, title: this._title});
        });
@@ -65,6 +61,10 @@ export default class Card {
     this._element.remove();
   }
 
+  changeLikes(numberOfLikes) {
+    this._count.textContent = numberOfLikes.likes.length;
+    this._likeButton.classList.toggle('photo-grid__button_active');
+  }
 
 }
 
