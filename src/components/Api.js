@@ -4,6 +4,7 @@ export default class Api {
     this._headers = options.headers;
   }
 
+
   _checkResult(res) {
     if (!res.ok) {
       return Promise.reject(`Ошибка: ${res.status}`);
@@ -11,22 +12,21 @@ export default class Api {
     return res.json();
   }
 
+  _request(endpoint, options) {
+    return fetch((`${this._baseUrl}` + endpoint), options).then(this._checkResult)
+  }
 
   getInitialCards() {
-    return fetch( `${this._baseUrl}cards`,  /*'https://mesto.nomoreparties.co/v1/cohort-66/cards'*/
-      {headers: this._headers})
-    .then(this._checkResult)
+    return this._request('cards', {headers: this._headers})
 }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}users/me`,  /*'https://mesto.nomoreparties.co/v1/cohort-66/users/me'*/
-      {headers: this._headers})
-    .then(this._checkResult)
+    return this._request('users/me', {headers: this._headers})
   }
 
 
   sendUserInfo(data) {
-    return fetch(`${this._baseUrl}users/me`, {
+    return this._request('users/me',  {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({
@@ -34,11 +34,10 @@ export default class Api {
       about: data.about
     })
   })
-  .then(this._checkResult)
-  }
+}
 
   sendPictureInfo(data) {
-    return fetch(`${this._baseUrl}cards`, {
+    return this._request('cards', {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -46,45 +45,40 @@ export default class Api {
         link: data.link
       })
     })
-    .then(this._checkResult)
   }
 
   deleteCard(data) {
     this._cardId = data.id;
-    return fetch(`${this._baseUrl}cards/${this._cardId}`, {
+    return this._request(`cards/${this._cardId}`, {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(this._checkResult)
   }
 
   sendLikes(data) {
     this._cardId = data.id;
-    return fetch(`${this._baseUrl}cards/${this._cardId}/likes`, {
+    return this._request(`cards/${this._cardId}/likes`, {
       method: 'PUT',
       headers: this._headers
     })
-    .then(this._checkResult)
   }
 
   deleteLikes(data) {
     this._cardId = data.id;
-    return fetch(`${this._baseUrl}cards/${this._cardId}/likes`, {
+    return this._request(`cards/${this._cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(this._checkResult)
   }
 
   sendNewAvatar(data) {
-    return fetch(`${this._baseUrl}users/me/avatar`, {
+    return this._request(`users/me/avatar`, {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({
       avatar: data.avatar
     })
   })
-  .then(this._checkResult)
   }
 
 

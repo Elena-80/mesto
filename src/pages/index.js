@@ -21,9 +21,6 @@ import PopupWithConfirm from '../components/PopupWithConfirm.js'
 const imageAddButton = document.querySelector('.profile__add-button');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAvatarButton = document.querySelector('.profile__avatar-edit');
-const popupEdit = document.querySelector('.popup-edit');
-const profileName = popupEdit.querySelector('.popup__input_type_name');
-const profileProfession = popupEdit.querySelector('.popup__input_type_profession');
 const formsList = Array.from(document.forms);
 
 let currentCard = null;
@@ -172,7 +169,7 @@ const popupAvatarForm = new PopupWithForm('.popup-avatar', {handleFormSubmit: (i
    });
 popupAvatarForm.setEventListeners();
 
-const validation = (formElement) => {
+const setValidation = (formElement) => {
   const validator = new FormValidator(presets, formElement);
   validator.enableValidation();
   return validator;
@@ -181,7 +178,7 @@ const validation = (formElement) => {
 
 const formValidatorsList = {};
 formsList.forEach(form => {
-  formValidatorsList[form.id] = validation(form);
+  formValidatorsList[form.id] = setValidation(form);
 });
 
 
@@ -195,9 +192,8 @@ imageAddButton.addEventListener('click', () => {
 profileEditButton.addEventListener('click', () => {
   formValidatorsList.editForm.clearForm();
   const userData = currentUserInfo.getUserInfo();
-  profileName.value = userData.name;
-  profileProfession.value = userData.about;
-  popupEditForm.open()
+  popupEditForm.open();
+  popupEditForm.setInputValues(userData);
 }
   );
 
